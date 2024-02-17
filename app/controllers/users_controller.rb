@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, only: [:index, :destroy]
+  before_action :find_user, only: [:destroy]
 
   def index
     @users = User.all
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path, notice: 'User deleted successfully!'
   end
@@ -20,4 +20,7 @@ class UsersController < ApplicationController
     end
   end
 
+  def find_user
+    @user = User.find(params[:id])
+  end
 end

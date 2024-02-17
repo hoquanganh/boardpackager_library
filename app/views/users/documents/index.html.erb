@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col">
+    <h3>User Files</h3>
+  </div>
+  <div class="col-10">
+    <%= link_to 'New File', new_user_document_path(@user), class: "btn btn-primary" %>
+  </div>
+</div>
+
+<%= render partial: 'document_row', collection: @documents, as: :document %>

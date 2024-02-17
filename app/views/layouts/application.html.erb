@@ -10,11 +10,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-
   <body>
     <%= render 'layouts/menu' %>
 
     <div class="container">
+      <% if flash[:success] %>
+        <div class="alert alert-success"><%= flash[:success] %></div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
+      <% end %>
       <%= yield %>
     </div>
   </body>
