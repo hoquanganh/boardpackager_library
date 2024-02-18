@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :users do
-    resources :documents, module: :users
+    resources :documents, module: :users do
+      post 'copy', on: :member
+    end
   end
-
 end

@@ -14,12 +14,7 @@
     <%= render 'layouts/menu' %>
 
     <div class="container">
-      <% if flash[:success] %>
-        <div class="alert alert-success"><%= flash[:success] %></div>
-      <% end %>
-      <% if flash[:error] %>
-        <div class="alert alert-danger"><%= flash[:error] %></div>
-      <% end %>
+      <%= render 'shared/flash_messages' %>
       <%= yield %>
     </div>
   </body>

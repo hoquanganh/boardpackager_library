@@ -1,0 +1,15 @@
+<div class="toast-container position-fixed top-0 end-0 mt-3 me-3">
+  <% flash.each do |key, value| %>
+    <% unless key == 'stimulus_flash' %>
+      <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000" data-controller="flash-messages" data-target="flash-messages.toast">
+        <div class="toast-header bg-<%= flash_class(key) %> text-white">
+          <strong class="me-auto">Notification</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          <%= value %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

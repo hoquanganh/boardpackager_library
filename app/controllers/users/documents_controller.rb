@@ -36,6 +36,14 @@ class Users::DocumentsController < ApplicationController
     redirect_to user_documents_path(@user), notice: 'Document deleted successfully.'
   end
 
+  def copy
+    if DocumentCopyService.new(params[:id], current_user).perform!
+      redirect_to user_documents_path(current_user), notice: 'Document copied successfully.'
+    else
+      redirect_to user_documents_path(current_user), alert: 'Failed to copy the document.'
+    end
+  end
+
   private
 
   def set_user

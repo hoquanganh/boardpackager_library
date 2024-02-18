@@ -1,10 +1,11 @@
 <div class="row">
   <div class="col">
-    <h3>User Files</h3>
+    <h3><%= "#{@user.email}'s files" %></h3>
   </div>
-  <div class="col-10">
+  <div class="col-8">
     <%= link_to 'New File', new_user_document_path(@user), class: "btn btn-primary" %>
   </div>
+  <p></p>
 </div>
 
 <%= render partial: 'document_row', collection: @documents, as: :document %>
