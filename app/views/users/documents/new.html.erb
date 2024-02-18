@@ -1,66 +1,11 @@
 <h3>User New Files</h3>
 
-<!-- Add an input field for file upload -->
 <%= form_with(url: user_documents_path(@user), local: true, html: { multipart: true }) do |form| %>
   <%= form.file_field :file, multiple: true, name: 'file[]', id: 'file-input' %>
-  <%#= form.file_field :file, multiple: true, direct_upload: true %>
   <%= form.submit 'Upload' %>
+  <p></p>
+  <div id="drop-zone" data-controller="file-upload" class="border border-secondary rounded p-4">
+    <p class="text-muted mb-3">Drag and drop your file(s) here</p>
+    <div class="bg-light p-3 rounded" id="file-list"></div>
+  </div>
 <% end %>
-
-<!-- Add a drop zone for Drag & Drop -->
-<div id="drop-zone">
-  <p>Drag and drop your file(s) here</p>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('file-input');
-
-    // Handle file drop event
-    dropZone.addEventListener('drop', (event) => {
-      event.preventDefault();
-      const files = event.dataTransfer.files;
-      fileInput.files = files;
-      uploadFiles(files);
-    });
-
-    // Handle file dragover event
-    dropZone.addEventListener('dragover', (event) => {
-      event.preventDefault();
-    });
-
-    // Handle file input change event
-    fileInput.addEventListener('change', (event) => {
-      const files = event.target.files;
-      uploadFiles(files);
-    });
-
-    // Function to handle file upload
-    function uploadFiles(files) {
-      const formData = new FormData();
-      for (let i = 0; i < files.length; i++) {
-        formData.append('document[file][]', files[i]);
-      }
-
-      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-      fetch('/users/<%= @user.id %>/documents', {
-        method: 'POST',
-        headers: {
-          'X-CSRF-Token': csrfToken
-        },
-        body: formData
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          // Handle the response as needed
-        })
-        .catch(error => {
-          console.error(error);
-          // Handle the error as needed
-        });
-    }
-  });
-</script>
