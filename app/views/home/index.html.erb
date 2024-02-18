@@ -1,5 +1,5 @@
 <h2> Home Page</h2>
 
-<div class="container">
-  <p class="notice"> <%= "Welcome: #{current_user.email}" if current_user %></p>
+<div class="container" data-controller="hello">
+  <p class="notice"><%= current_user.email if current_user %></p>
 </div>

@@ -1,5 +1,4 @@
 <h3>User New Files</h3>
-<meta name="csrf-token" content="<%= form_authenticity_token %>">
 
 <!-- Add an input field for file upload -->
 <%= form_with(url: user_documents_path(@user), local: true, html: { multipart: true }) do |form| %>
