@@ -6,10 +6,6 @@ class Users::DocumentsController < ApplicationController
     @documents = @user.documents.order(created_at: :desc)
   end
 
-  def show
-    @document = @user.documents.find(params[:id])
-  end
-
   def new
     @document = @user.documents.new
   end
@@ -18,13 +14,13 @@ class Users::DocumentsController < ApplicationController
     files = Array(params[:file]).compact_blank
 
     files.each do |file|
-      @document = @user.documents.build(file_attrs(file))
-      @document.file.attach(file)
+      document = @user.documents.build(file_attrs(file))
+      document.file.attach(file)
 
-      if @document.save
+      if document.save
         flash[:success] = "#{file.original_filename} uploaded successfully."
       else
-        flash[:error] = @document.errors.full_messages.join(', ')
+        flash[:error] = document.errors.full_messages.join(', ')
       end
     end
 
@@ -49,7 +45,7 @@ class Users::DocumentsController < ApplicationController
     if @document.toggle_privacy
       render json: { success: true }
     else
-      render json: { success: false, error: "Failed to toggle privacy" }
+      render json: { success: false, error: "Failed to toggle privacy" }, status: :unprocessable_entity
     end
   end
 
