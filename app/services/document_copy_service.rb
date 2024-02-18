@@ -1,6 +1,6 @@
 class DocumentCopyService
-  def initialize(document_id, user)
-    @document = Document.find_by(id: document_id)
+  def initialize(document, user)
+    @document = document
     @user = user
   end
 

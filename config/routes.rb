@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :documents, module: :users do
-      post 'copy', on: :member
+      member do
+        post :copy
+        post :toggle_privacy
+      end
     end
   end
+
 end

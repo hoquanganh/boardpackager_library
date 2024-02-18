@@ -1,5 +1,6 @@
 class Users::DocumentsController < ApplicationController
   before_action :set_user
+  before_action :find_document, only: %i(copy toggle_privacy)
 
   def index
     @documents = @user.documents.order(created_at: :desc)
@@ -37,10 +38,18 @@ class Users::DocumentsController < ApplicationController
   end
 
   def copy
-    if DocumentCopyService.new(params[:id], current_user).perform!
+    if DocumentCopyService.new(@document, current_user).perform!
       redirect_to user_documents_path(current_user), notice: 'Document copied successfully.'
     else
       redirect_to user_documents_path(current_user), alert: 'Failed to copy the document.'
+    end
+  end
+
+  def toggle_privacy
+    if @document.toggle_privacy
+      render json: { success: true }
+    else
+      render json: { success: false, error: "Failed to toggle privacy" }
     end
   end
 
@@ -48,6 +57,10 @@ class Users::DocumentsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def find_document
+    @document = Document.find(params[:id])
   end
 
   def document_params
