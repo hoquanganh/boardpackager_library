@@ -3,7 +3,7 @@ class Users::DocumentsController < ApplicationController
   before_action :find_document, only: %i(copy toggle_privacy)
 
   def index
-    @documents = @user.documents.order(created_at: :desc)
+    @documents = Users::DocumentsInteractor.new(current_user, @user).call
   end
 
   def show
@@ -46,7 +46,7 @@ class Users::DocumentsController < ApplicationController
   end
 
   def toggle_privacy
-    if @document.toggle_privacy
+    if @document.user == current_user && @document.toggle_privacy
       render json: { success: true }
     else
       render json: { success: false, error: "Failed to toggle privacy" }
