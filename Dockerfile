@@ -1,6 +1,7 @@
 FROM ruby:3.2.0
 
 RUN apt-get update -qq && apt-get install -y postgresql-client
+RUN apt-get update && apt-get install -y python2.7
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs
 
@@ -9,6 +10,7 @@ RUN npm install -g yarn
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
+# RUN gem install libv8 -v '3.16.14.19.1' -- --with-system-v8
 RUN bundle install
 COPY . /myapp
 

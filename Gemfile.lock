@@ -278,6 +278,7 @@ DEPENDENCIES
   bootstrap (~> 5.3.0)
   debug
   devise
+  execjs
   importmap-rails
   jbuilder
   pg (~> 1.1)
