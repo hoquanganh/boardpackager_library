@@ -21,4 +21,11 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Screenshots
+  ![Screenshot](screenshots/Screen%20Shot%202024-02-19%20at%2007.21.48.png)
+  ![Screenshot 1](screenshots/Screen%20Shot%202024-02-19%20at%2007.21.59.png)
+  ![Screenshot 2](screenshots/Screen%20Shot%202024-02-19%20at%2007.22.20.png)
+  ![Screenshot 3](screenshots/Screen%20Shot%202024-02-19%20at%2007.22.38.png)
+  ![Screenshot 4](screenshots/Screen%20Shot%202024-02-19%20at%2007.22.50.png)
+  ![Screenshot 5](screenshots/Screen%20Shot%202024-02-19%20at%2007.22.54.png)
+
