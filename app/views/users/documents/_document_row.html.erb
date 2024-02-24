@@ -7,7 +7,14 @@
 
     <div class="col-md-4">
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" data-controller="toggle-private" data-action="change->toggle-private#togglePrivacy" data-user-id="<%= current_user.id %>" data-document-id="<%= document.id %>" id="privacySwitch<%= document.id %>" <%= document.private ? "checked" : "" %>>
+        <input class="form-check-input" type="checkbox"
+          data-controller="toggle-private"
+          data-action="change->toggle-private#togglePrivacy"
+          data-user-id="<%= current_user.id %>"
+          data-document-id="<%= document.id %>"
+          id="privacySwitch<%= document.id %>"
+          <%= document.private ? "checked" : "" %>
+          <%= document.user_id != current_user.id ? "disabled" : "" %>>
         <label class="form-check-label" for="privacySwitch<%= document.id %>">Private</label>
       </div>
       <p class="card-text">Uploaded: <%= document.created_at.strftime("%B %d, %Y") %></p>

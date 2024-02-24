@@ -309,6 +309,7 @@ DEPENDENCIES
   bootstrap (~> 5.3.0)
   debug
   devise
+  execjs
   factory_bot_rails
   faker
   importmap-rails
